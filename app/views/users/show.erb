@@ -1,6 +1,12 @@
-<p> Here are your Golf Bags, <%= @user.username %>
-<% @user.golf_bags.each do |bag| %>
-  <ul>
-    <li><a href="/bags/<%=bag.id%>"><%= bag.name %></a></li>
-  </ul>
-<% end %>
+<div class = "container">
+    <p> Here are the movies you have selected, <%=@user.username%></p>
+
+    <ul>
+      <%user.movies.each do |movie|%>
+      <li>movie.name</li>
+      <%end%>
+    </ul>
+
+    <a href = "/movies/<%=@user.id%>/edit">Do you want to edit?</a>
+
+</div>
