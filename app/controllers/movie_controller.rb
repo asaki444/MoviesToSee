@@ -6,6 +6,9 @@ class MoviesController < ApplicationController
 
   post '/movies/:id/choosemovie' do
     @user = User.find(params[:id])
-    binding.pry
+    @movies = Movie.find(params["movie_ids"])
+    @user.movies = @movies
+    @user.save
+    redirect "/users/#{@user.id}/show"
   end
 end
