@@ -2,8 +2,8 @@
     <p> Here are the movies you have selected, <%=@user.username%></p>
 
     <ul>
-      <%user.movies.each do |movie|%>
-      <li>movie.name</li>
+      <%@user.movies.each do |movie|%>
+      <li><%=movie.name%></li>
       <%end%>
     </ul>
 
