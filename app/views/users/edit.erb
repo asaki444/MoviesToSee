@@ -1,0 +1,13 @@
+<h2>Adjust Settings to Make it Easier to Log in</h2>
+
+<form action="/movies/edit/<%=@user.id%>" method="post">
+<label for = "username">Change Username?</label>
+<input type = "text" name = "username"><%=@user.username%></input>
+<label for = "password">Change Password?</label>
+<input type = "password" name = "password">
+<input type = "submit">
+</form>
+
+or....
+
+<h3 class = "warning"> <a href = "/users/delete/<%=@user.id%>">Remove Account?</a> </h3>

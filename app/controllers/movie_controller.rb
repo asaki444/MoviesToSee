@@ -18,10 +18,11 @@ class MoviesController < ApplicationController
     redirect "/users/#{@user.id}/show"
   end
 
-  post 'movies/:id/edit' do
+  post 'movies/edit/:id' do
     if loggedin?
     @user = User.find(params[:id])
     @movies = Movie.find(params["movie_ids"])
+    @movies.doc
     @user.movies = @movies
     @user.save
     redirect "/users/#{@user.id}/show"

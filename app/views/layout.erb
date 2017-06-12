@@ -8,10 +8,10 @@
     <nav class = "container">
       <h3>Movies To See </h3>
       <% if logged_in? %>
-        <a href = "/settings/">Change/Remove Account</a>
+        <a href = "/users/edit/<%=session[:id]%>">Change/Remove Account?</a>
         <a href="/logout"> Log Out </a>
         <p>Welcome, <%=current_user.username %></p>
-
+        <p><a href = "/users/<%=session[:id]%>/show">Wanna See Your Movies?</a></p>
       <% else %>
         <a href="/signup">Sign Up</a>
         <a href="/login"> Sign In </a>
