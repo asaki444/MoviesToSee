@@ -1,6 +1,7 @@
-require 'pry'
+require 'rack-flash'
 class UsersController < ApplicationController
-
+    enable :sessions
+    use Rack::Flash
     get '/users' do
       erb :'/users/index'
     end
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
       erb :'/users/login'
     end
 
-    get '/users/:id/show' do
+    get '/users/show/:id' do
       if logged_in?
         @user = User.find(params[:id])
         erb :'/users/show'
@@ -47,12 +48,14 @@ class UsersController < ApplicationController
         if user && !logged_in?
            if user.authenticate(params[:password]) && user.id != session[:id]
             session[:id] = user.id
-            redirect "/users/#{user.id}/show"
+            redirect "/users/show/#{user.id}"
           else
-            redirect "/fail"
+            flash[:message] = "Failed Authentication"
+            redirect "/login"
           end
         else
-            redirect "/fail"
+          flash[:message] = "Failed Authentication"
+          redirect "/login"
         end
     end
 
@@ -64,11 +67,11 @@ class UsersController < ApplicationController
       @movie = Scraper.new(@user.zip_code)
       @movie.doc
       session[:id] = @user.id
-      redirect "/movies/#{@user.id}/choosemovie"
+      redirect "/movies/choosemovie/#{@user.id}"
       end
     end
 
-    patch '/account/edit/:id' do
+    patch '/users/edit/:id' do
       user = User.find(params[:id])
       user.username = params[:username]
       user.password = params[:password]

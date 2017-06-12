@@ -1,21 +1,27 @@
+require 'pry'
 class MoviesController < ApplicationController
 
-  get '/movies/:id/choosemovie' do
+  get '/movies/choosemovie/:id' do
     @user = User.find(params[:id])
     erb :'/movies/choosemovie'
   end
 
-  get '/movies/:id/edit' do
+  get '/movies/edit/:id' do
     @user = User.find(session[:id])
-    erb :'/movies/edit'
+    if @user.movies.empty?
+      redirect "/movies/choosemovie/#{@user.id}"
+    else
+      erb :'/movies/edit'
+    end
+
   end
 
-  post '/movies/:id/choosemovie' do
+  post '/movies/choosemovie/:id' do
     @user = User.find(params[:id])
     @movies = Movie.find(params["movie_ids"])
     @user.movies = @movies
     @user.save
-    redirect "/users/#{@user.id}/show"
+    redirect "/users/show/#{@user.id}"
   end
 
   post 'movies/edit/:id' do
@@ -23,9 +29,9 @@ class MoviesController < ApplicationController
     @user = User.find(params[:id])
     @movies = Movie.find(params["movie_ids"])
     @movies.doc
-    @user.movies = @movies
+    @user.movies = @movies/
     @user.save
-    redirect "/users/#{@user.id}/show"
+    redirect "/users/show/#{@user.id}"
     else
     redirect '/'
     end

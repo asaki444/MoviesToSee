@@ -1,4 +1,4 @@
-<form method = "post" action = "/movies/<%=@user.id%>/edit">
+<form method = "post" action = "movies/edit/<%=@user.id%>">
       <%Movie.all.each do |movie|%>
     <input type="checkbox" name="movie_id" id="<%=movie.id%>" value="<%=movie.id%>" <%='checked' if @user.movies.include?(movie) %> ><%=movie.name%></input>
       <%end%>

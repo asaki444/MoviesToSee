@@ -1,6 +1,7 @@
 <h2>Adjust Settings to Make it Easier to Log in</h2>
 
-<form action="/movies/edit/<%=@user.id%>" method="post">
+<form action="/users/edit/<%=@user.id%>" method="post">
+<input id="hidden" type="hidden" name="_method" value="patch">
 <label for = "username">Change Username?</label>
 <input type = "text" name = "username"><%=@user.username%></input>
 <label for = "password">Change Password?</label>
