@@ -2,6 +2,7 @@ require 'rack-flash'
 class UsersController < ApplicationController
     enable :sessions
     use Rack::Flash
+
     get '/users' do
       erb :'/users/index'
     end
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
       erb :'/users/login'
     end
 
-    get '/users/show/:id' do
+    get '/users/:id' do
       if logged_in?
         @user = User.find(params[:id])
         erb :'/users/show'
@@ -32,7 +33,7 @@ class UsersController < ApplicationController
       erb :fail
     end
 
-    get '/users/edit/:id' do
+    get '/users/:id/edit' do
        @user = User.find(params[:id])
        erb :'/users/edit'
     end
@@ -64,7 +65,7 @@ class UsersController < ApplicationController
         redirect '/signup'
       else
       @user = User.create(username: params["username"], zip_code: params["zipcode"], password: params["password"])
-      @movie = Scraper.new(@user.zip_code)
+      @movie = MovieScraper.new(@user.zip_code)
       @movie.doc
       session[:id] = @user.id
       redirect "/movies/choosemovie/#{@user.id}"

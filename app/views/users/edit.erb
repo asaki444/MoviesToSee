@@ -3,7 +3,7 @@
 <form action="/users/edit/<%=@user.id%>" method="post">
 <input id="hidden" type="hidden" name="_method" value="patch">
 <label for = "username">Change Username?</label>
-<input type = "text" name = "username"><%=@user.username%></input>
+<input type = "text" name = "username" value = "<%=@user.username%>"></input>
 <label for = "password">Change Password?</label>
 <input type = "password" name = "password">
 <input type = "submit">

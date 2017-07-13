@@ -1,7 +1,0 @@
-
-<form method = "post" action = "/movies/choosemovie/<%=@user.id%>">
-      <%Movie.all.each do |movie|%>
-      <p><input type="checkbox" name="movie_ids[]" id="<%=movie.id%>" value="<%=movie.id%>"><%=movie.name%></input></p>
-    <%end%>
-      <input type = "submit">
-</form>

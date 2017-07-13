@@ -1,5 +1,5 @@
-<div class = "container">
-    <p> Here are the movies you have selected, <%=@user.username%></p>
+
+    <h4> Here are the movies you have selected:</h4>
 
     <ul>
       <%@user.movies.each do |movie|%>
@@ -7,8 +7,7 @@
       <%end%>
     </ul>
 
-    <a href = "/movies/edit/<%=@user.id%>">Do you want to edit?</a>
+    <a href = "/movies/edit/<%=@user.id%>">Do you want to edit your movies?</a>
 
-</div>
 
-<h3 class = "warning"> <a href = "/users/delete/<%=@user.id%>">Remove Account?</a> </h3>
+<p class = "warning"> <a href = "/users/delete/<%=@user.id%>">Remove Account?</a> </p>

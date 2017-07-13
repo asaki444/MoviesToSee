@@ -3,22 +3,35 @@
   <head>
     <title>Movies You Want to See</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
   </head>
   <body>
-    <nav class = "container">
-      <h3>Movies To See </h3>
+    <nav class = "navbar navbar-default">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <a class="navbar-brand" href="/">Movie To See Web App</a>
+    </div>
+    <ul class="nav navbar-nav">
       <% if logged_in? %>
-        <a href = "/users/edit/<%=session[:id]%>">Change/Remove Account?</a>
-        <a href="/logout"> Log Out </a>
-        <p>Welcome, <%=current_user.username %></p>
-        <p><a href = "/users/show/<%=session[:id]%>">Wanna See Your Movies?</a></p>
+      <li>  <a href = "/users/edit/<%=session[:id]%>">Change/Remove Account?</a> </li>
+      <li>   <a href="/logout"> Log Out </a> </li>
       <% else %>
-        <a href="/signup">Sign Up</a>
-        <a href="/login"> Sign In </a>
+      <li>  <a href="/signup">Sign Up</a> </li>
+      <li>  <a href="/login"> Sign In </a> </li>
       <%end %>
-
+    </ul>
+      </div>
     </nav>
+    <div class = "container">
+      <div class = "row">
+         <%if logged_in?%>
+          <h3>Hey, <%=current_user.username %></h3>
+          <%end%>
+      </div>
+      <div class = "row">
        <%=yield%>
+      </div>
+     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   </body>

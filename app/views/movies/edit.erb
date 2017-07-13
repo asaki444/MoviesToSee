@@ -1,6 +1,7 @@
-<form method = "post" action = "movies/edit/<%=@user.id%>">
+<form method = "post" action = "/movies/edit/<%=@user.id%>">
+  <input id="hidden" type="hidden" name="_method" value="patch">
       <%Movie.all.each do |movie|%>
-    <input type="checkbox" name="movie_id" id="<%=movie.id%>" value="<%=movie.id%>" <%='checked' if @user.movies.include?(movie) %> ><%=movie.name%></input>
+    <div><input type="checkbox" name="movie_ids[]" id="<%=movie.id%>" value="<%=movie.id%>" <%='checked' if @user.movies.include?(movie) %> ><%=movie.name%></input><div>
       <%end%>
       <input type = "submit">
 </form>

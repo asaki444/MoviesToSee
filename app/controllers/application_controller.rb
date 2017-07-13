@@ -8,12 +8,15 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "moviesareawesome"
   end
 
-
   get '/' do
-    erb :index
-    #welcome to MoviesToSee!!!
+    if logged_in?
+      redirect to "/users/show/#{session[:id]}"
+    else
+      erb :index
+    end
   end
 
+  helpers do
     def logged_in?
       !!session[:id]
     end
@@ -21,6 +24,5 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:id])
     end
-
-
+  end
 end
